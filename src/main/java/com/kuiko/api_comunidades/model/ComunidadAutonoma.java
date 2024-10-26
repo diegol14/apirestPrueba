@@ -3,6 +3,8 @@ package com.kuiko.api_comunidades.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
@@ -11,7 +13,12 @@ import jakarta.persistence.Table;
 public class ComunidadAutonoma {
 	
 	@Id
+    @NotNull(message = "El código de la comunidad no puede ser nulo")
+    @NotBlank(message = "El código de la comunidad no puede estar vacío")
 	private String codigo_ca;
+	
+    @NotNull(message = "El nombre de la comunidad no puede ser nulo")
+    @NotBlank(message = "El nombre de la comunidad no puede estar vacío")
 	private String nombre_ca;
 	
 	

@@ -3,15 +3,18 @@ package com.kuiko.api_comunidades.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import com.kuiko.api_comunidades.model.ComunidadAutonoma;
 import com.kuiko.api_comunidades.service.ComunidadService;
 
+import jakarta.validation.Valid;
+
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comunidades-autonomas")
+@RequestMapping("/api-kuiko/comunidades-autonomas")
 public class ComunidadController {
 
     private final ComunidadService comunidadService;
@@ -22,7 +25,10 @@ public class ComunidadController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<ComunidadAutonoma> createComunidad(@RequestBody ComunidadAutonoma comunidadAutonoma) {
+    public ResponseEntity<?> createComunidad(@Valid @RequestBody ComunidadAutonoma comunidadAutonoma, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().body(result.getAllErrors());
+        }
         ComunidadAutonoma createdComunidad = comunidadService.createComAutonoma(comunidadAutonoma);
         return new ResponseEntity<>(createdComunidad, HttpStatus.CREATED);
     }
@@ -40,7 +46,10 @@ public class ComunidadController {
     }
 
     @PutMapping("/{caCode}")
-    public ResponseEntity<ComunidadAutonoma> updateComunidad(@PathVariable("caCode") String caCode, @RequestBody ComunidadAutonoma comunidadActualizada) {
+    public ResponseEntity<?> updateComunidad(@PathVariable("caCode") String caCode, @Valid @RequestBody ComunidadAutonoma comunidadActualizada, BindingResult result) {
+        if (result.hasErrors()) {
+            return ResponseEntity.badRequest().body(result.getAllErrors());
+        }
         ComunidadAutonoma updatedComunidad = comunidadService.updateComAutonoma(caCode, comunidadActualizada);
         return updatedComunidad != null ? ResponseEntity.ok(updatedComunidad) : ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
