@@ -1,0 +1,75 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Logs ###
+*.log
+
+### Eclipse specific files ###
+*.launch
+*.metadata
+*.recommenders
+bin/
+tmp/
+
+### Compiled class files ###
+*.class
+
+### Maven specific files ###
+.mvn/
+!**/src/main/**/.mvn/**  # Excluye el uso interno de .mvn en el src
+target/
+dependency-reduced-pom.xml
+buildNumber.properties
+
+### Lombok generated files (si se utilizan anotaciones de Lombok) ###
+lombok.config
+
+### Spring Boot devtools (recarga automática) ###
+.spring-boot-devtools
+
+### H2 Database (embedded) ###
+### *.h2.db
+
+### Local environment files ###
+.env
+.env.local
+.env.*.local
+*.swp
+
+### Node dependencies (si usas algún frontend con npm/Node.js) ###
+node_modules/
+
+### Other ###
+*.DS_Store
+Thumbs.db
